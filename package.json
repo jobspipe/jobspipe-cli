@@ -1,0 +1,36 @@
+{
+  "name": "jobspipe-cli",
+  "version": "0.1.0",
+  "description": "CLI and agent skill for the JobsPipe API: search live job postings and scan a company's tech stack.",
+  "type": "module",
+  "bin": {
+    "jobspipe": "bin/jobspipe.mjs"
+  },
+  "files": [
+    "bin",
+    "SKILL.md",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "jobspipe",
+    "jobs",
+    "jobs-api",
+    "cli",
+    "agent",
+    "skill",
+    "technographics",
+    "tech-stack"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jobspipe/jobspipe-cli.git"
+  },
+  "homepage": "https://jobspipe.dev"
+}
