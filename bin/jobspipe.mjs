@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync } from "node:fs";
+import { readFileSync, realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const DEFAULT_BASE_URL = "https://api.jobspipe.dev";
@@ -231,4 +231,10 @@ function main() {
   fail(`unknown command "${command}" — run "jobspipe --help"`);
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) main();
+// ponytail: realpathSync resolves the bin symlink npm creates, else argv[1]
+// (the symlink) never equals import.meta.url (the real path) and main() is skipped.
+let invokedAsBin = false;
+try {
+  invokedAsBin = realpathSync(process.argv[1]) === fileURLToPath(import.meta.url);
+} catch {}
+if (invokedAsBin) main();
