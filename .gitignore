@@ -3,3 +3,8 @@ node_modules/
 .DS_Store
 .env
 .env.*
+
+# skills/npm install artifacts
+.agents/
+skills-lock.json
+package-lock.json
