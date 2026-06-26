@@ -38,20 +38,20 @@ Set it once:
 export JOBSPIPE_API_KEY=jp_live_YOUR_KEY
 ```
 
-## Install the CLI (required to run `jobspipe`)
+## Run the CLI (no install step)
 
-The `jobspipe` commands in this skill need the CLI. Installing this skill does
-**not** install it — `npx skills add` only copies this file. Before running any
-`jobspipe` command, install the npm package globally and set your key:
+The CLI runs through `npx`, which fetches and caches it on first use — no
+`npm install` needed. Set your key once per shell, then call it:
 
 ```bash
-npm i -g jobspipe-cli
 export JOBSPIPE_API_KEY=jp_live_YOUR_KEY
+npx -y jobspipe-cli jobs --limit 1   # verify your key works
 ```
 
-Then `jobspipe jobs ...` and `jobspipe stack ...` are available. Run
-`jobspipe --help` for every flag. Verify your key with `jobspipe jobs --limit 1`.
-No install needed? Use the equivalent `curl` examples below instead.
+Run `npx -y jobspipe-cli --help` for every flag. The `jobspipe ...` examples
+below are shorthand for `npx -y jobspipe-cli ...`; install once with
+`npm i -g jobspipe-cli` if you want the bare `jobspipe` command. No Node at
+all? Use the equivalent `curl` examples instead.
 
 ## Function 1 — Job search
 
@@ -76,7 +76,7 @@ curl -s https://api.jobspipe.dev/v1/jobs/search \
 CLI equivalent:
 
 ```bash
-jobspipe jobs --title "software engineer" --title "backend engineer" \
+npx -y jobspipe-cli jobs --title "software engineer" --title "backend engineer" \
   --country US --remote --max-age-days 7 --limit 25 --total
 ```
 
@@ -84,7 +84,7 @@ Pass a raw filter object for the full surface (overrides any flags, also read
 from stdin):
 
 ```bash
-jobspipe jobs '{"description_or":["rust"],"posted_at_max_age_days":7,"limit":10}'
+npx -y jobspipe-cli jobs '{"description_or":["rust"],"posted_at_max_age_days":7,"limit":10}'
 ```
 
 Common filters: `job_title_or`, `job_title_not`, `description_or`
@@ -143,8 +143,8 @@ curl -s https://api.jobspipe.dev/v1/stack/scan \
 CLI equivalent:
 
 ```bash
-jobspipe stack stripe.com
-jobspipe stack vercel.com --mode render
+npx -y jobspipe-cli stack stripe.com
+npx -y jobspipe-cli stack vercel.com --mode render
 ```
 
 Response:
