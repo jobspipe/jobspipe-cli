@@ -38,17 +38,20 @@ Set it once:
 export JOBSPIPE_API_KEY=jp_live_YOUR_KEY
 ```
 
-## Install the CLI (optional)
+## Install the CLI (required to run `jobspipe`)
 
-The curl examples below work with no install. For an ergonomic command:
+The `jobspipe` commands in this skill need the CLI. Installing this skill does
+**not** install it — `npx skills add` only copies this file. Before running any
+`jobspipe` command, install the npm package globally and set your key:
 
 ```bash
-npx skills add jobspipe/jobspipe-cli
+npm i -g jobspipe-cli
 export JOBSPIPE_API_KEY=jp_live_YOUR_KEY
 ```
 
 Then `jobspipe jobs ...` and `jobspipe stack ...` are available. Run
 `jobspipe --help` for every flag. Verify your key with `jobspipe jobs --limit 1`.
+No install needed? Use the equivalent `curl` examples below instead.
 
 ## Function 1 — Job search
 
