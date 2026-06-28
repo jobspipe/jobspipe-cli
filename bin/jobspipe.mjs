@@ -110,16 +110,7 @@ function rawJsonFrom(positionals) {
 function config(flags) {
   const apiKey = lastValue(flags, "api-key") || process.env.JOBSPIPE_API_KEY;
   const rawBase = lastValue(flags, "base-url") || process.env.JOBSPIPE_BASE_URL || DEFAULT_BASE_URL;
-  let url;
-  try {
-    url = new URL(rawBase);
-  } catch {
-    fail(`invalid base URL: ${rawBase}`);
-  }
-  if (url.protocol !== "https:" && url.protocol !== "http:") {
-    fail(`base URL must use http or https: ${rawBase}`);
-  }
-  return { apiKey, baseUrl: url.origin + url.pathname.replace(/\/$/, "") };
+  return { apiKey, baseUrl: rawBase.replace(/\/$/, "") };
 }
 
 function fail(message) {
