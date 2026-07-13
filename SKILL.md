@@ -25,8 +25,8 @@ Base URL: `https://api.jobspipe.dev`
 ## Authentication
 
 Every request needs an API key sent as a Bearer token. Keys start with
-`jp_live_`. Get one free at https://jobspipe.dev/signup (free tier: 5,000
-requests/month, no card).
+`jp_live_`. Get one free at https://jobspipe.dev/signup (free tier: 100
+credits/month, 1 credit = 1 request).
 
 ```
 Authorization: Bearer jp_live_YOUR_KEY

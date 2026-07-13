@@ -22,7 +22,7 @@ npx jobspipe-cli --help
 export JOBSPIPE_API_KEY=jp_live_YOUR_KEY
 ```
 
-Get a free key at https://jobspipe.dev/signup (5,000 requests/month, no card).
+Get a free key at https://jobspipe.dev/signup (free tier: 100 credits/month, 1 credit = 1 request).
 
 ## Usage
 

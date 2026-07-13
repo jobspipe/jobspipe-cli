@@ -17,7 +17,7 @@ npm i -g jobspipe-cli
 export JOBSPIPE_API_KEY=jp_live_YOUR_KEY
 ```
 
-Get a free key (5,000 requests/month, no card) at https://jobspipe.dev/signup.
+Get a free key (free tier: 100 credits/month) at https://jobspipe.dev/signup.
 
 The full agent skill — every filter, response shape, and error code — is in
 [`SKILL.md`](./SKILL.md). Read it before generating API calls.
