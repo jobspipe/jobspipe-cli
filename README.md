@@ -15,6 +15,12 @@ npx skills add jobspipe/jobspipe-cli
 export JOBSPIPE_API_KEY=jp_live_YOUR_KEY
 ```
 
+Or install the full [JobsPipe skill collection](https://skills.sh/jobspipe/skills) - job search, stack scan, MCP setup, webhooks, and agent discovery:
+
+```bash
+npx skills add jobspipe/skills
+```
+
 As a standalone CLI:
 
 ```bash
