@@ -40,7 +40,7 @@ Both commands print JSON to stdout. Authenticate with `JOBSPIPE_API_KEY` (or
 ### Jobs flags
 
 `--title`, `--exclude-title`, `--description`, `--country`, `--exclude-country`,
-`--company`, `--company-like`, `--seniority`, `--employment-type`, `--source`
+`--location`, `--company`, `--company-like`, `--seniority`, `--employment-type`, `--source`
 (repeatable), `--remote` / `--no-remote`, `--max-age-days`, `--since`, `--until`,
 `--limit`, `--offset`, `--total`. A raw filter object (positional arg or stdin)
 overrides the flags and exposes the full API surface.

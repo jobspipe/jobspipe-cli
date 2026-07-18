@@ -13,6 +13,7 @@ const SUGAR_TO_FILTER = {
   "exclude-description": "description_not",
   country: "job_country_code_or",
   "exclude-country": "job_country_code_not",
+  location: "job_location_or",
   company: "company_name_or",
   "company-like": "company_name_partial_match_or",
   seniority: "job_seniority_or",
@@ -193,6 +194,7 @@ Jobs flags (repeatable where shown):
   --description T        match description text, e.g. a skill or tech
   --country CC           ISO country code, e.g. US
   --exclude-country CC   exclude ISO country code
+  --location T           match job city or region, e.g. Seattle or WA
   --company NAME         exact company name
   --company-like NAME    partial company name
   --seniority LEVEL      seniority level
