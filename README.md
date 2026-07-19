@@ -61,4 +61,10 @@ overrides the flags and exposes the full API surface.
 node --test
 ```
 
-Full API reference: https://jobspipe.dev/docs
+## Resources
+
+- [JobsPipe API docs](https://docs.jobspipe.dev)
+- [JobsPipe developer portal](https://jobspipe.dev/developers)
+- [JobsPipe OpenAPI spec](https://jobspipe.dev/openapi)
+- [JobsPipe MCP server](https://jobspipe.dev/mcp-server)
+- [API authentication](https://docs.jobspipe.dev/authentication)
