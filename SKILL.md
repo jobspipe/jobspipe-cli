@@ -25,8 +25,8 @@ Base URL: `https://api.jobspipe.dev`
 ## Authentication
 
 Every request needs an API key sent as a Bearer token. Keys start with
-`jp_live_`. Get one free at https://jobspipe.dev/signup (free tier: 100
-credits/month, 1 credit = 1 request).
+`jp_live_`. Get one free at https://jobspipe.dev/signup (free tier: 1,000
+jobs/month, 1 credit = 1 job returned).
 
 ```
 Authorization: Bearer jp_live_YOUR_KEY
@@ -125,7 +125,7 @@ Response:
 }
 ```
 
-`limit` is capped by your plan (free 25, builder 100, scale 500). Paginate with
+`limit` is capped by your plan (free 25, builder 100, scale and volume 500). Paginate with
 `offset` (or follow `metadata.next_cursor`) until fewer than `limit` rows return.
 
 ## Function 2 — Tech search (stack scan)
