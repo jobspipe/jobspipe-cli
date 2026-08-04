@@ -49,5 +49,5 @@ Both print JSON to stdout. Authenticate with `JOBSPIPE_API_KEY` (or `--api-key`)
 - API docs: https://jobspipe.dev/docs
 - OpenAPI spec: https://jobspipe.dev/openapi.json
 - Authentication & agent auth: https://jobspipe.dev/auth.md
-- MCP server: https://jobspipe.dev/mcp
+- MCP server: https://mcp.jobspipe.dev/mcp (send your key as `Authorization: Bearer jp_live_...`)
 - Machine-readable index: https://jobspipe.dev/llms.txt

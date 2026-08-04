@@ -1,0 +1,31 @@
+{
+  "name": "jobspipe",
+  "displayName": "JobsPipe",
+  "version": "0.1.2",
+  "description": "Search live job postings from 30+ ATS feeds and job boards, and detect the technology stack a company runs.",
+  "author": {
+    "name": "JobsPipe",
+    "url": "https://jobspipe.dev"
+  },
+  "homepage": "https://jobspipe.dev",
+  "repository": "https://github.com/jobspipe/jobspipe-cli",
+  "license": "MIT",
+  "keywords": [
+    "jobs",
+    "jobs-api",
+    "hiring",
+    "ats",
+    "recruiting",
+    "technographics",
+    "tech-stack"
+  ],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "JobsPipe API key",
+      "description": "Starts with jp_live_. Create one at https://jobspipe.dev/dashboard - the free tier needs no card.",
+      "sensitive": true,
+      "required": true
+    }
+  }
+}
