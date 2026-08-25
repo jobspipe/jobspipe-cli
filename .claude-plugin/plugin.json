@@ -1,6 +1,6 @@
 {
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "jobspipe",
-  "displayName": "JobsPipe",
   "version": "0.1.2",
   "description": "Search live job postings from 30+ ATS feeds and job boards, and detect the technology stack a company runs.",
   "author": {
