@@ -119,11 +119,15 @@ Response:
       "max_annual_salary_usd": 190000,
       "date_posted": "2026-06-18",
       "technology_slugs": ["go", "postgres"],
-      "final_url": "https://example.com/careers/3958211043"
+      "url": "https://example.com/careers/3958211043",
+      "source_url": "https://example.com/careers/3958211043"
     }
   ]
 }
 ```
+
+The job link is `url`. `source_url` carries the same link as first seen on the
+originating board, and `sources[]` lists every board the role was found on.
 
 `limit` is capped by your plan (free 25, builder 100, scale and volume 500). Paginate with
 `offset` (or follow `metadata.next_cursor`) until fewer than `limit` rows return.
