@@ -68,3 +68,7 @@ node --test
 - [JobsPipe OpenAPI spec](https://jobspipe.dev/openapi)
 - [JobsPipe MCP server](https://jobspipe.dev/mcp-server)
 - [API authentication](https://docs.jobspipe.dev/authentication)
+
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
