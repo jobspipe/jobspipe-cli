@@ -4,7 +4,16 @@ import { fileURLToPath } from "node:url";
 
 const DEFAULT_BASE_URL = "https://api.jobspipe.dev";
 
-const BOOLEAN_FLAGS = new Set(["remote", "no-remote", "total", "help", "h"]);
+const BOOLEAN_FLAGS = new Set([
+  "remote",
+  "no-remote",
+  "hybrid",
+  "onsite",
+  "on-site",
+  "total",
+  "help",
+  "h",
+]);
 
 const SUGAR_TO_FILTER = {
   title: "job_title_or",
@@ -14,14 +23,26 @@ const SUGAR_TO_FILTER = {
   country: "job_country_code_or",
   "exclude-country": "job_country_code_not",
   location: "job_location_or",
+  region: "region_or",
   company: "company_name_or",
   "company-like": "company_name_partial_match_or",
   seniority: "job_seniority_or",
   "employment-type": "employment_type_or",
   source: "source_or",
+  "exclude-source": "source_not",
+  "work-arrangement": "work_arrangement_or",
 };
 
 const UPPERCASE_FLAGS = new Set(["country", "exclude-country"]);
+
+const WORK_ARRANGEMENTS = new Set(["remote", "hybrid", "onsite"]);
+
+// "On-Site" and "on site" mean the same filter value as "onsite"; anything else passes
+// through untouched so the API's own 400 names the values it accepts.
+function normalizeArrangement(value) {
+  const compact = value.toLowerCase().replace(/[^a-z]/g, "");
+  return WORK_ARRANGEMENTS.has(compact) ? compact : value;
+}
 
 export function parseArgs(argv) {
   const positionals = [];
@@ -68,10 +89,15 @@ export function buildFilters(flags) {
   for (const [flag, field] of Object.entries(SUGAR_TO_FILTER)) {
     let list = values(flags, flag);
     if (UPPERCASE_FLAGS.has(flag)) list = list.map((c) => c.toUpperCase());
+    if (flag === "work-arrangement") list = list.map(normalizeArrangement);
     if (list.length) filters[field] = list;
   }
   if (flags["remote"]) filters.remote = true;
   if (flags["no-remote"]) filters.remote = false;
+  const arrangements = filters.work_arrangement_or ?? [];
+  if (flags["hybrid"]) arrangements.push("hybrid");
+  if (flags["onsite"] || flags["on-site"]) arrangements.push("onsite");
+  if (arrangements.length) filters.work_arrangement_or = [...new Set(arrangements)];
   const maxAge = toInt(lastValue(flags, "max-age-days"));
   if (maxAge !== undefined) filters.posted_at_max_age_days = maxAge;
   const since = lastValue(flags, "since");
@@ -195,12 +221,16 @@ Jobs flags (repeatable where shown):
   --country CC           ISO country code, e.g. US
   --exclude-country CC   exclude ISO country code
   --location T           match job city or region, e.g. Seattle or WA
+  --region CODE          ISO 3166-2 US state or Canadian province, e.g. US-NY
   --company NAME         exact company name
   --company-like NAME    partial company name
   --seniority LEVEL      seniority level
   --employment-type T    full-time | part-time | contract | temporary | internship
   --source S             source platform, e.g. linkedin
   --remote | --no-remote
+  --work-arrangement A   remote | hybrid | onsite (matches only postings that
+                         state one, about 21% — use --remote for breadth)
+  --hybrid | --onsite    shorthand for --work-arrangement
   --max-age-days N       only postings newer than N days
   --since YYYY-MM-DD --until YYYY-MM-DD
   --limit N --offset N --total
