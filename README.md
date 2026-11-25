@@ -28,7 +28,7 @@ npx jobspipe-cli --help
 export JOBSPIPE_API_KEY=jp_live_YOUR_KEY
 ```
 
-Get a free key at https://jobspipe.dev/signup (free tier: 100 credits/month, 1 credit = 1 request).
+Get a free key at https://jobspipe.dev/signup. A new account gets 1,000 credits once, and a job returned costs 1 credit.
 
 ## Usage
 
@@ -46,10 +46,14 @@ Both commands print JSON to stdout. Authenticate with `JOBSPIPE_API_KEY` (or
 ### Jobs flags
 
 `--title`, `--exclude-title`, `--description`, `--country`, `--exclude-country`,
-`--location`, `--company`, `--company-like`, `--seniority`, `--employment-type`, `--source`
-(repeatable), `--remote` / `--no-remote`, `--max-age-days`, `--since`, `--until`,
+`--location`, `--region`, `--company`, `--company-like`, `--seniority`, `--employment-type`,
+`--source`, `--exclude-source`, `--work-arrangement` (repeatable), `--remote` / `--no-remote`, `--hybrid`, `--onsite`,
+`--max-age-days`, `--since`, `--until`,
 `--limit`, `--offset`, `--total`. A raw filter object (positional arg or stdin)
 overrides the flags and exposes the full API surface.
+
+`--work-arrangement` / `--hybrid` / `--onsite` match only postings that state an
+arrangement, about 21% of the corpus. Use `--remote` for breadth.
 
 ### Stack flags
 

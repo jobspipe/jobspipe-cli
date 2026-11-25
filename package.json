@@ -1,6 +1,6 @@
 {
   "name": "jobspipe-cli",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "CLI and agent skill for the JobsPipe API: search live job postings and scan a company's tech stack.",
   "type": "module",
   "bin": {

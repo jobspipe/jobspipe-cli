@@ -31,6 +31,8 @@ test("buildFilters maps sugar flags to the API filter object", () => {
     "--location", "Seattle",
     "--location", "WA",
     "--company-like", "acme",
+    "--source", "greenhouse",
+    "--exclude-source", "indeed",
     "--remote",
     "--max-age-days", "7",
     "--limit", "25",
@@ -43,11 +45,33 @@ test("buildFilters maps sugar flags to the API filter object", () => {
     job_country_code_or: ["US", "GB"],
     job_location_or: ["Seattle", "WA"],
     company_name_partial_match_or: ["acme"],
+    source_or: ["greenhouse"],
+    source_not: ["indeed"],
     remote: true,
     posted_at_max_age_days: 7,
     limit: 25,
     include_total_results: true,
   });
+});
+
+test("buildFilters maps --region to region_or", () => {
+  const { flags } = parseArgs(["--region", "US-NY", "--region", "CA-ON"]);
+  assert.deepEqual(buildFilters(flags), { region_or: ["US-NY", "CA-ON"] });
+});
+
+test("buildFilters maps work arrangements and normalizes on-site spellings", () => {
+  const { flags } = parseArgs(["--work-arrangement", "On-Site", "--work-arrangement", "hybrid"]);
+  assert.deepEqual(buildFilters(flags), { work_arrangement_or: ["onsite", "hybrid"] });
+});
+
+test("buildFilters folds --hybrid and --onsite into work_arrangement_or without duplicates", () => {
+  const { flags } = parseArgs(["--work-arrangement", "hybrid", "--hybrid", "--onsite"]);
+  assert.deepEqual(buildFilters(flags), { work_arrangement_or: ["hybrid", "onsite"] });
+});
+
+test("buildFilters keeps --remote and --work-arrangement as separate filters", () => {
+  const { flags } = parseArgs(["--remote", "--work-arrangement", "remote"]);
+  assert.deepEqual(buildFilters(flags), { remote: true, work_arrangement_or: ["remote"] });
 });
 
 test("buildFilters honors --no-remote", () => {
